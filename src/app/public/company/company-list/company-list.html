@@ -1,1 +1,10 @@
-<p>company-list works!</p>
+@for (company of companyItems(); track company.id) {
+  <div class="container">
+    <app-company-item
+    [suffix]="company.suffix"
+    [business_name]="company.business_name"
+    [logo]="company.logo"
+  />
+  </div>
+
+}

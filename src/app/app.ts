@@ -5,7 +5,7 @@ import { Layout } from "./public/layout";
 
 @Component({
   selector: 'app-root',
-  imports: [CompanyRoutingModule, CompanyList, Layout],
+  imports: [CompanyRoutingModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
