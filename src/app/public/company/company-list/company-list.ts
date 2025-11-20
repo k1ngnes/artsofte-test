@@ -54,7 +54,7 @@ export class CompanyList implements OnInit {
       .subscribe((companyItemsResponse) => {
         this.companyItems.set(companyItemsResponse.data);
         this.length.set(companyItemsResponse.total);
-        if (this.uniqueIndustries.length === 0 && this.uniqueTypes.length === 0) {
+        if (this.uniqueIndustries().size === 0 && this.uniqueTypes().size === 0) {
           this.uniqueIndustries.set(this.filterService.getIndustries(companyItemsResponse.data));
           this.uniqueTypes.set(this.filterService.getTypes(companyItemsResponse.data));
         }
@@ -63,9 +63,6 @@ export class CompanyList implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    this.filterForm.get('industry')?.valueChanges.subscribe((industry) => {
-      this.fetchData();
-    });
   }
 
   handlePageEvent(pageEvent: PageEvent) {
@@ -74,5 +71,7 @@ export class CompanyList implements OnInit {
     this.fetchData();
   }
 
-  handleFormChange() {}
+  handleFormChange() {
+    queueMicrotask(() => this.fetchData());
+  }
 }

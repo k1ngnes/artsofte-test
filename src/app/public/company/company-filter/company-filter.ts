@@ -25,5 +25,6 @@ export class CompanyFilter {
 
   onFormGroupChange(): void {
     console.log('submitted form', this.childForm().value)
+    console.log(this.industries());
   }
 }
