@@ -1,8 +1,15 @@
-<!-- <form class="form" [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+<form class="form" [formGroup]="childForm()" (ngSubmit)="onSubmit()" (change)="onFormGroupChange()">
   <div>
     <input formControlName="name" />
   </div>
-  <select>
-    <option></option>
+  <select formControlName="type">
+    @for (type of types(); track $index) {
+    <option value="{{ type }}">{{ type }}</option>
+    }
   </select>
-</form> -->
+  <select formControlName="industry">
+    @for (industry of industries(); track $index) {
+    <option value="{{ industry }}">{{ industry }}</option>
+    }
+  </select>
+</form>

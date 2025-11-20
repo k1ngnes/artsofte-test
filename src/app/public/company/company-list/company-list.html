@@ -1,4 +1,9 @@
 <div class="container">
+  <form [formGroup]="filterForm" (change)="handleFormChange()">
+    <app-company-filter [childForm]="filterForm" [industries]="uniqueIndustries()" [types]="uniqueTypes()" ></app-company-filter>
+  </form>
+  
+  
   @for (company of companyItems(); track company.id) {
   <div class="sub-container">
     <a class="router-link" [routerLink]="['/detail', company.id]"

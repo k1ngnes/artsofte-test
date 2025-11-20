@@ -8,7 +8,22 @@ import { HttpClient } from '@angular/common/http';
 export class Company {
   http = inject(HttpClient);
 
-  getCompanyItems(page: number, per_page: number) {
+  getCompanyItems(page: number, per_page: number, q?: string | null, industry?: string | null, company_type?: string | null) {
+    let qUrl = '';
+    let industryUrl = '';
+    let companyTypeUrl = '';
+    
+    if (q) {
+      qUrl = "&q=" + q;
+    }
+    
+    if (industry) {
+      industryUrl = "&industry=" + industry;
+    }
+
+    if (company_type) {
+      companyTypeUrl = "&company_type=" + company_type;
+    }
     const url =
       'https://faker-api.milki.space/companies' +
       '?' +
@@ -16,7 +31,8 @@ export class Company {
       page +
       '&' +
       'per_page=' +
-      per_page;
+      per_page + qUrl + industryUrl + companyTypeUrl;
+
     return this.http.get<TCompanyItemResponse>(url);
   }
 

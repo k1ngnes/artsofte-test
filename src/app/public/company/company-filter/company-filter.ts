@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Component, input} from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-company-filter',
@@ -9,10 +9,21 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 })
 export class CompanyFilter {
   constructor(private fb: FormBuilder) {}
-  
-  // filterForm = this.fb.group({
-  //   name: '',
-  //   type: '',
-  //   industry: '',
-  // })
+
+  childForm = input<FormGroup>(this.fb.group({
+    name: '',
+    type: '',
+    industry: '',
+  })); 
+
+  industries = input<Set<unknown>>();
+  types = input<Set<unknown>>();
+
+  onSubmit(): void {
+    console.log('submitted form', this.childForm().value)
+  }
+
+  onFormGroupChange(): void {
+    console.log('submitted form', this.childForm().value)
+  }
 }
