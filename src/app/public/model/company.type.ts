@@ -1,3 +1,8 @@
+export type TSorting = {
+  sortType: string;
+  order: 'asc' | 'desc';
+}
+
 export type TCompanyItem = {
   id: number;
   uid: string;

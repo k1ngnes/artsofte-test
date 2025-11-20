@@ -8,30 +8,43 @@ import { HttpClient } from '@angular/common/http';
 export class Company {
   http = inject(HttpClient);
 
-  getCompanyItems(page: number, per_page: number, q?: string | null, industry?: string | null, company_type?: string | null) {
+  getCompanyItems(
+    page: number,
+    per_page: number,
+    q?: string | null,
+    industry?: string | null,
+    company_type?: string | null,
+    sort_by?: string | null,
+    sort_order?: string | null
+  ) {
     let qUrl = '';
     let industryUrl = '';
     let companyTypeUrl = '';
-    
+
     if (q) {
-      qUrl = "&q=" + q;
+      qUrl = '&q=' + q;
     }
-    
+
     if (industry) {
-      industryUrl = "&industry=" + industry;
+      industryUrl = '&industry=' + industry;
     }
 
     if (company_type) {
-      companyTypeUrl = "&company_type=" + company_type;
+      companyTypeUrl = '&company_type=' + company_type;
     }
     const url =
       'https://faker-api.milki.space/companies' +
-      '?' +
-      'page=' +
+      '?page=' +
       page +
-      '&' +
-      'per_page=' +
-      per_page + qUrl + industryUrl + companyTypeUrl;
+      '&per_page=' +
+      per_page +
+      qUrl +
+      industryUrl +
+      companyTypeUrl +
+      '&sort_by=' +
+      sort_by +
+      '&sort_order=' +
+      sort_order;
 
     return this.http.get<TCompanyItemResponse>(url);
   }

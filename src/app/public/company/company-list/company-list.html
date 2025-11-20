@@ -1,8 +1,11 @@
 <div class="container">
-  <form [formGroup]="filterForm" (change)="handleFormChange()">
+  <form [formGroup]="filterForm" (change)="handleFilterFormChange()">
     <app-company-filter [childForm]="filterForm" [industries]="uniqueIndustries()" [types]="uniqueTypes()" ></app-company-filter>
   </form>
   
+  <form [formGroup]="sortForm" (change)="handleSortFormChange()">
+    <app-company-sort [childForm]="sortForm"></app-company-sort>
+  </form>
   
   @for (company of companyItems(); track company.id) {
   <div class="sub-container">

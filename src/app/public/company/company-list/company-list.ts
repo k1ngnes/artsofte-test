@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Company } from '../../services/company';
-import { TCompanyItem } from '../../model/company.type';
+import { TSorting, TCompanyItem } from '../../model/company.type';
 import { catchError } from 'rxjs';
 import { CompanyItem } from '../company-item/company-item';
 import { MatPaginatorIntl, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -9,10 +9,11 @@ import { PaginatorIntl } from '../../services/paginator-intl';
 import { CompanyFilter } from '../company-filter/company-filter';
 import { FilterService } from '../../services/filter-service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { CompanySort } from "../company-sort/company-sort";
 
 @Component({
   selector: 'app-company-list',
-  imports: [CompanyItem, MatPaginatorModule, RouterLink, CompanyFilter, ReactiveFormsModule],
+  imports: [CompanyItem, MatPaginatorModule, RouterLink, CompanyFilter, ReactiveFormsModule, CompanySort],
   templateUrl: './company-list.html',
   styleUrl: './company-list.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }],
@@ -36,6 +37,11 @@ export class CompanyList implements OnInit {
     industry: '',
   });
 
+  sortForm = this.fb.group({
+    sortType: 'id',
+    order: 'asc'
+  });
+
   fetchData(): void {
     this.companyService
       .getCompanyItems(
@@ -43,7 +49,9 @@ export class CompanyList implements OnInit {
         this.per_page(),
         this.filterForm.value.name,
         this.filterForm.value.industry,
-        this.filterForm.value.type
+        this.filterForm.value.type,
+        this.sortForm.value.sortType,
+        this.sortForm.value.order,
       )
       .pipe(
         catchError((err) => {
@@ -71,7 +79,13 @@ export class CompanyList implements OnInit {
     this.fetchData();
   }
 
-  handleFormChange() {
+  handleFilterFormChange() {
     queueMicrotask(() => this.fetchData());
   }
+
+  handleSortFormChange() {
+    console.log(this.sortForm.value)
+    queueMicrotask(() => this.fetchData());
+  }
+  
 }
