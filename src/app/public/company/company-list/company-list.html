@@ -1,10 +1,21 @@
-@for (company of companyItems(); track company.id) {
-  <div class="container">
-    <app-company-item
-    [suffix]="company.suffix"
-    [business_name]="company.business_name"
-    [logo]="company.logo"
-  />
+<div class="container">
+  @for (company of companyItems(); track company.id) {
+  <div class="sub-container">
+    <a class="router-link" [routerLink]="['/detail', company.id]"
+      ><app-company-item
+        [suffix]="company.suffix"
+        [business_name]="company.business_name"
+        [logo]="company.logo"
+    /></a>
   </div>
+  }
 
-}
+  <mat-paginator
+    [length]="length()"
+    [pageSize]="per_page()"
+    [showFirstLastButtons]="true"
+    [pageSizeOptions]="[5, 10, 15]"
+    [pageIndex]="0"
+    (page)="handlePageEvent($event)"
+  ></mat-paginator>
+</div>

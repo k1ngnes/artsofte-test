@@ -1,11 +1,21 @@
+@use '@angular/material' as mat;
+:root {
+  @include mat.paginator-overrides((
+    // container-text-color: #bdc5bf,
+    // container-background-color: #002451,
+    // enabled-icon-color: #bdc5bf
+  ));
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #002451;
-  color: #bdc5bf;
+  background-color: #ffffff;
+  color: #4b4c52;
 }
 
 * {
   outline: none;
 }
+

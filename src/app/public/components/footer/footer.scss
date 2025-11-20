@@ -1,0 +1,15 @@
+footer {
+  display: flex;
+  padding-inline: 16px;
+  padding-block: 8px;
+  background-color: #d7e3ff;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 56px;
+  color: #487bc8;
+
+  .github-logo {
+    width: 75px;
+    height: 75px;
+  }
+}

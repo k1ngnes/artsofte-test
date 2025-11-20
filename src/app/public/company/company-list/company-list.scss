@@ -1,4 +1,19 @@
 .container {
-  display: block;
-  margin: 10px;
+  flex: 1;
+  
+  .sub-container {
+    display: block;
+    margin: 10px;
+
+    .router-link {
+      color: #4b4c52;
+      text-decoration: none;
+    }
+
+    .router-link:hover{
+      color: #80828c;
+      transition: color 0.3s ease-in-out;
+    }
+  }
 }
+

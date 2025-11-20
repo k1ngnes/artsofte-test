@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, InputSignal } from '@angular/core';
 import { TCompanyItem, TCompanyItemResponse } from '../model/company.type';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,25 +8,21 @@ import { HttpClient } from '@angular/common/http';
 export class Company {
   http = inject(HttpClient);
 
-  companyItems: Array<TCompanyItem> = [
-    {
-      id: 123,
-      uid: 'sgfdsgsdgfsdg',
-      business_name: 'something of a name',
-      suffix: 'fosjfs',
-      industry: 'fkjsdlfgkj',
-      type: 'fkjfslkfgj',
-      catch_phrase: 'gfdkjgldskgjf',
-      phone_number: 'fo12121212',
-      full_address: 'lkfdsgjldskgfj',
-      lattitude: 121234124,
-      longitude: 123434,
-      logo: 'jfglkfjg',
-    },
-  ];
-
-  getCompanyItems() {
-    const url = 'https://faker-api.milki.space/companies';
+  getCompanyItems(page: number, per_page: number) {
+    const url =
+      'https://faker-api.milki.space/companies' +
+      '?' +
+      'page=' +
+      page +
+      '&' +
+      'per_page=' +
+      per_page;
     return this.http.get<TCompanyItemResponse>(url);
+  }
+
+  getOneCompany(id: InputSignal<number>) {
+    const url = 'https://faker-api.milki.space/companies/' + id();
+
+    return this.http.get<TCompanyItem>(url);
   }
 }
