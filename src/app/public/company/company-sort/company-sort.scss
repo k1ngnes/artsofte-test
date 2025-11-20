@@ -1,5 +1,10 @@
-.arrow {
-  font-weight: bold;
-  font-size: 32px;
-  cursor: pointer;
+.form {
+  display: flex;
+  gap: 10px;
+
+  .selector {
+    height: 25px;
+    border-radius: 5px;
+    border-width: 2px;
+  }
 }

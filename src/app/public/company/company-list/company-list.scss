@@ -3,6 +3,17 @@
   display: flex;
   flex-direction: column;
   min-height: 80vh;
+
+  .forms {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .search {
+      font-size: 26px;
+    }
+  }
   
   .sub-container {
     display: block;
