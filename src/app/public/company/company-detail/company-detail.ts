@@ -10,20 +10,6 @@ import { catchError } from 'rxjs';
   styleUrl: './company-detail.scss',
 })
 export class CompanyDetail implements OnInit {
-  ngOnInit(): void {
-    this.companyService
-      .getOneCompany(this.id)
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      )
-      .subscribe((oneCompanyResponse) => {
-        this.companyDetail = signal(oneCompanyResponse)
-        this.companyDetail.set(oneCompanyResponse)
-      });
-  }
   id = input.required<number>();
   companyService = inject(Company);
   companyDetail = signal<TCompanyItem>({
@@ -40,4 +26,20 @@ export class CompanyDetail implements OnInit {
     longitude: 0,
     logo: 'Default logo',
   });
+  
+  ngOnInit(): void {
+    this.companyService
+      .getOneCompany(this.id)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+      )
+      .subscribe((oneCompanyResponse) => {
+        this.companyDetail = signal(oneCompanyResponse)
+        this.companyDetail.set(oneCompanyResponse)
+      });
+  }
+ 
 }

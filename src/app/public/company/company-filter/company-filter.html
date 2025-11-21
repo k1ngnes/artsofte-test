@@ -2,8 +2,6 @@
   <form
     class="form"
     [formGroup]="childForm()"
-    (ngSubmit)="onSubmit()"
-    (change)="onFormGroupChange()"
   >
     <input class="input" placeholder="Enter company name..." formControlName="name" />
     <select class="selector" formControlName="type">

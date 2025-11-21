@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Company } from '../../services/company';
-import { TSorting, TCompanyItem } from '../../model/company.type';
+import { TCompanyItem } from '../../model/company.type';
 import { catchError } from 'rxjs';
 import { CompanyItem } from '../company-item/company-item';
 import { MatPaginatorIntl, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -84,7 +84,6 @@ export class CompanyList implements OnInit {
   }
 
   handleSortFormChange() {
-    console.log(this.sortForm.value)
     queueMicrotask(() => this.fetchData());
   }
   

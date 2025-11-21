@@ -18,13 +18,4 @@ export class CompanyFilter {
 
   industries = input<Set<unknown>>();
   types = input<Set<unknown>>();
-
-  onSubmit(): void {
-    console.log('submitted form', this.childForm().value)
-  }
-
-  onFormGroupChange(): void {
-    console.log('submitted form', this.childForm().value)
-    console.log(this.industries());
-  }
 }

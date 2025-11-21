@@ -16,17 +16,4 @@ export class CompanySort {
       order: 'asc',
     })
   );
-
-  isAscSorting(): boolean {
-    return this.childForm().value.order === 'asc';
-  }
-
-  isDescSorting(): boolean {
-    return this.childForm().value.order === 'desc';
-  }
-
-  sortCompanies(): void {
-    const futureSortingOrder = this.isDescSorting() ? 'asc' : 'desc';
-    this.childForm().get('order')?.setValue(futureSortingOrder);
-  }
 }
